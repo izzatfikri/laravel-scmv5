@@ -13,7 +13,6 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-       // return $students;
         return view('students.index', compact('students'));
     }
 
@@ -22,7 +21,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $subjects = \App\Models\Subject::all();
+        return view('students.create', compact('subjects'));
     }
 
     /**
@@ -30,7 +30,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name','studentNo','email']);
+        $request->validate(['name','studentNo','email','subject_id']);
         Student::create($request->all());
         return redirect()->route('students.index');
     }
@@ -48,7 +48,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $subjects = \App\Models\Subject::all();
+        return view('students.edit', compact('student', 'subjects'));
     }
 
     /**
@@ -56,7 +57,12 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate(['name'=>'required',
+        'studentNo'=>'required',
+        'email'=>'required',
+        'subject_id'=>'required']);
+        $student->update($request->all());
+        return redirect()->route('students.index');
     }
 
     /**
@@ -64,6 +70,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        //echo $student->name;
+        //echo $student->studentNo;
+        $student->delete();
+        return redirect()->route('students.index')->with("Student deleted successfully");
     }
 }

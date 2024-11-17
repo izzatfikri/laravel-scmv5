@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +28,13 @@
                     <td>{{ $student -> studentNo }}</td>
                     <td>{{ $student -> email }}</td>
                     <td>
-                        <a href="{{route('students.show', $student->id)}}">Show</a>
-                        <a>Edit</a>
-                        <a>Delete</a>
+                    <form action="{{ route('students.destroy', $student->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <a class="btn btn-primary" href="{{route('students.show', $student->id)}}">Show</a>
+                        <a class="btn btn-warning" href="{{route('students.edit', $student->id)}}">Edit</a>
+                        <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
                     </td>
                 </tr>
             @endforeach

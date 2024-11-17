@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student - Show</title>
-</head>
+@extends('layouts.app2')
+@section('content')
 <body>
+    <div class="container-fluid">
     <h1>Student - Show</h1>
-    <a>Student Name: {{ $student -> name }}</a><br>
-    <a>Student ID: {{ $student -> studentNo }}</a><br>
-    <a>Email: {{ $student -> email }}</a><br>
+    <div class="card">
+        <div class="card-header">
+            Student Details
+        </div>
+        <div class="card-body">
+            <h5>Student Name: {{ $student -> name }}</h5>
+            <h5>Student ID: {{ $student -> studentNo }}</h5>
+            <h5>Email: {{ $student -> email }}</h5>
+        </div>
+    </div>
+    </div>
 </body>
-</html>
+@endsection

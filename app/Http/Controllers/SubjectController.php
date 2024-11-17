@@ -47,7 +47,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subjects.edit', compact('subject'));
     }
 
     /**
@@ -55,7 +55,9 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        //
+        $request->validate(['code','name','creditHours']);
+        $subject->update($request->all());
+        return redirect()->route('subjects.index');
     }
 
     /**
@@ -63,6 +65,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject->delete();
+        return redirect()->route('subjects.index')->with('Subject deleted successfully');
     }
 }

@@ -1,12 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject - Index</title>
-</head>
 <body>
     <div class="container">
     <h1>Subject - List</h1>
@@ -28,9 +21,13 @@
                     <td>{{ $subject -> name }}</td>
                     <td>{{ $subject -> creditHours }}</td>
                     <td>
-                        <a href="{{route('subjects.show', $subject->id)}}">Show</a>
-                        <a>Edit</a>
-                        <a>Delete</a>
+                        <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a class="btn btn-primary" href="{{route('subjects.show', $subject->id)}}">Show</a>
+                            <a class="btn btn-warning" href="{{route('subjects.edit', $subject->id)}}">Edit</a>
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -43,5 +40,4 @@
     </table>
     </div>
 </body>
-</html>
 @endsection

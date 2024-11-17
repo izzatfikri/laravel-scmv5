@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
     <div class="container">
     <h1>Lecturer - List</h1>
@@ -27,6 +27,7 @@
                         <a class="btn btn-primary" href="{{route('lecturers.show', $lecturer->id)}}">Show</a>
                         <a class="btn btn-warning" href="{{route('lecturers.edit', $lecturer->id)}}">Edit</a>
                         <input class="btn btn-danger" type="submit" value="Delete">
+                    </form>
                     </td>
                 </tr>
             @endforeach

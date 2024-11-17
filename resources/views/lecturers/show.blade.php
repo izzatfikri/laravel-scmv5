@@ -2,9 +2,10 @@
 @section('content')
 <body>
 <div class="container-fluid">
+<h1>Lecturer - Show</h1>
     <div class="card">
   <div class="card-header">
-    Featured
+    Lecturer Details
   </div>
   <div class="card-body">
     <h5>Lecturer Name: {{ $lecturer -> name }}</h5>

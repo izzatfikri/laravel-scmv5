@@ -52,8 +52,9 @@ class LecturerController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Lecturer $lecturer)
-    {
-        //
+    {   
+        $subjects = \App\Models\Subject::all();
+        return view('lecturers.edit', compact('lecturer', 'subjects'));
     }
 
     /**
@@ -61,7 +62,12 @@ class LecturerController extends Controller
      */
     public function update(Request $request, Lecturer $lecturer)
     {
-        //
+        $request->validate(['name'=>'required',
+        'staffNo'=>'required',
+        'email'=>'required',
+        'subject_id'=>'required']);
+        $lecturer->update($request->all());
+        return redirect()->route('lecturers.index');
     }
 
     /**
